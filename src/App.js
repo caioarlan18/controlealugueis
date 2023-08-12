@@ -1,10 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { Home } from './components/Homepage/Home';
 function App() {
   return (
     <div>
-      <h1>Ola mundo</h1>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

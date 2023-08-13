@@ -1,0 +1,88 @@
+.add {
+  margin-top: 30px;
+  width: 90%;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  padding: 10px 0px;
+}
+.add1 {
+  width: 85%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.add1 h1 {
+  font-size: 17px;
+  font-family: poppins;
+  color: black;
+  font-weight: 600;
+}
+.add2 {
+  margin-top: 30px;
+}
+.add2 p {
+  font-family: poppins;
+  font-size: 13px;
+  color: rgb(65, 65, 65);
+}
+.add2 button {
+  padding: 10px;
+  color: white;
+  font-family: poppins;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: green;
+  border: 0;
+  border-radius: 10px;
+  width: 35%;
+  cursor: pointer;
+}
+.add2 input {
+  margin-top: 5px;
+  padding: 0.5rem;
+  width: 60%;
+  font-size: 13px;
+  border: 1px solid gray;
+
+  border-radius: 5px;
+  font-family: poppins;
+  text-indent: 2px;
+}
+.add2img img {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+}
+.add2img p {
+  font-family: poppins;
+  font-size: 13px;
+  color: rgb(65, 65, 65);
+  margin: 20px 0px;
+}
+.add2img button {
+  background-color: red;
+  border: 0;
+  color: white;
+  padding: 5px;
+  font-family: poppins;
+  font-size: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 992px) and (max-width: 4000px) {
+  .add {
+    width: 60%;
+  }
+  .add1 {
+    display: flex;
+    width: 80%;
+  }
+  .add2 input {
+    width: 100%;
+  }
+  .add2 button {
+    width: 100%;
+  }
+}

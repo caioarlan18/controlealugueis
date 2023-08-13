@@ -23,7 +23,7 @@ export function Header({ page }) {
                         <h1>{page}</h1>
                     </div>
                     <div className={styles.hd1}>
-                        <img src={logo} alt="logotipo do site" />
+                        <Link to={'/'}><img src={logo} alt="logotipo do site" /></Link>
                     </div>
                 </header>
 
@@ -34,11 +34,12 @@ export function Header({ page }) {
                         <Link to={'/'}>Home</Link>
                     </div>
                     <div className={styles.mn1}>
-                        <Link to={'/addhome'}>Adicionar casas</Link>
+                        <Link to={'/seehome'}>Gerenciar casas</Link>
                     </div>
                     <div className={styles.mn1}>
-                        <Link to={'/seehome'}>Ver casas</Link>
+                        <Link to={'/addhome'}>Adicionar casas</Link>
                     </div>
+
                 </nav>
             </div>
 
@@ -46,17 +47,18 @@ export function Header({ page }) {
             <div className={styles.menuDesktop}>
                 <header className={styles.hd}>
                     <div className={styles.hd1}>
-                        <img src={logo} alt="logotipo do site" />
+                        <Link to={'/'}><img src={logo} alt="logotipo do site" /></Link>
                     </div>
                     <div className={styles.hd1}>
                         <Link to={'/'}>Home</Link>
                     </div>
                     <div className={styles.hd1}>
-                        <Link to={'/addhome'}>Adicionar casas</Link>
+                        <Link to={'/seehome'}>Gerenciar casas</Link>
                     </div>
                     <div className={styles.hd1}>
-                        <Link to={'/seehome'}>Ver casas</Link>
+                        <Link to={'/addhome'}>Adicionar casas</Link>
                     </div>
+
                 </header>
             </div>
 

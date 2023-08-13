@@ -1,0 +1,35 @@
+.see {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.see1 {
+  width: 45%;
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+}
+.see1 h1 {
+  font-family: poppins;
+  font-size: 15px;
+  text-align: center;
+  color: black;
+  width: 85%;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.see1 p {
+  font-size: 13px;
+  font-family: poppins;
+  margin-top: 10px;
+  color: black;
+}
+.see1 img {
+  width: 85%;
+  height: 150px;
+}

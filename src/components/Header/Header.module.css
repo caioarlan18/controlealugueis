@@ -12,6 +12,7 @@
   font-weight: 500;
   color: #3e4441;
   font-size: 17px;
+  text-align: center;
 }
 
 .hd1 {
@@ -37,6 +38,7 @@
   background-color: white;
   overflow: hidden;
   transition: 0.3s;
+  position: absolute;
 }
 .open {
   height: 100vh;

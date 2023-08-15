@@ -4,6 +4,7 @@ import { Home } from './components/Homepage/Home';
 import { AddHome } from './components/adicionar casas/AddHome';
 import { SeeHome } from './components/ver casas/SeeHome';
 import { UpdateHome } from './components/atualizar dados/UpdateHome';
+import { GeneralHome } from './components/dados gerais/GeneralHome';
 function App() {
   return (
     <div>
@@ -13,6 +14,7 @@ function App() {
           <Route path='/addhome' element={<AddHome />} />
           <Route path='/seehome' element={<SeeHome />} />
           <Route path='/updatehome/:id' element={<UpdateHome />} />
+          <Route path='/generalhome/:id' element={<GeneralHome />} />
         </Routes>
       </Router>
     </div>

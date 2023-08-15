@@ -1,0 +1,64 @@
+.general {
+  width: 90%;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 30px;
+  height: 100%;
+  padding: 10px 0px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.general1 p {
+  font-size: 13px;
+  font-family: poppins;
+  margin-top: 10px;
+  color: black;
+  font-weight: 600;
+}
+.general1 svg {
+  position: relative;
+  top: 2px;
+}
+.general1 {
+  width: 85%;
+  margin-top: 20px;
+}
+.general1 img {
+  object-fit: cover;
+  height: 200px;
+}
+.general1 h1 {
+  font-size: 13px;
+  font-family: poppins;
+  margin-top: 20px;
+  text-transform: uppercase;
+  color: rgb(99, 99, 99);
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 20px;
+  font-weight: 600;
+}
+.general1 span {
+  text-transform: none;
+  color: black;
+  font-weight: 500;
+}
+.general1 button {
+  padding: 10px;
+  color: white;
+  font-family: poppins;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: purple;
+  border: 0;
+  border-radius: 10px;
+  width: 70%;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 4000px) {
+  .general {
+    width: 40%;
+  }
+}

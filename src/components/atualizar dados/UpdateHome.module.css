@@ -29,26 +29,28 @@
   padding: 10px;
   color: white;
   font-family: poppins;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   background-color: #0170b9;
   border: 0;
+  font-weight: 600;
   border-radius: 10px;
-  width: 35%;
+  width: 65%;
   cursor: pointer;
 }
 .remove button {
   padding: 10px;
   color: white;
   font-family: poppins;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   background-color: red;
   border: 0;
   border-radius: 10px;
-  width: 35%;
+  width: 65%;
   cursor: pointer;
   margin-top: 20px;
+  font-weight: 600;
 }
 .add2 input {
   margin-top: 5px;
@@ -106,5 +108,10 @@
   }
   .add2 button {
     width: 100%;
+  }
+  .add2img img {
+    width: 80%;
+    height: 60%;
+    margin-top: 40px;
   }
 }

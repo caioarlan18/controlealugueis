@@ -1,37 +1,14 @@
 import styles from './UpdateHome.module.css'
 import { Header } from '../Header/Header'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore, getDoc, addDoc, doc, deleteDoc, updateDoc, setDoc } from "firebase/firestore";
+import { getFirestore, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 export function UpdateHome() {
-    const [users, setUsers] = useState([])
-    const [homeName, setHomeName] = useState('')
-    const [isLeased, setIsLeased] = useState('')
-    const [homePrice, setHomePrice] = useState('')
-    const [dayPayment, setDayPayment] = useState('')
-    const [personName, setPersonName] = useState('')
-    const [personNumber, setPersonNumber] = useState('')
-    const [waterNumber, setWaterNumber] = useState('')
-    const [lightNumber, setLightNumber] = useState('')
-    const [startContractDate, setStartContractDate] = useState('')
-    const [contractTime, setContractTime] = useState('')
-    const [dayFees, setDayFees] = useState('')
-    const [totalFees, setTotalFees] = useState('')
-    const [cep, setCep] = useState('')
-    const [endereco, setEndereco] = useState('')
-    const [numero, setNumero] = useState('')
-    const [bairro, setBairro] = useState('')
-    const [cidade, setCidade] = useState('')
-    const [estado, setEstado] = useState('')
-    const [mostrarCampos, setMostrarCampos] = useState(false);
-    const [erroCEP, setErroCEP] = useState(false);
-    const [imagemURL, setImagemURL] = useState('');
+
+
     const [progress, setProgress] = useState(0);
-    const [selectedOption, setSelectedOption] = useState('');
 
     const { id } = useParams()
 
@@ -47,7 +24,6 @@ export function UpdateHome() {
     });
 
     const db = getFirestore(firebaseConfig);
-    const useCollectionRef = collection(db, 'casas')
     const storage = getStorage(firebaseConfig);
 
 
@@ -97,49 +73,6 @@ export function UpdateHome() {
 
 
 
-
-
-    useEffect(() => {
-        if (cep.length === 8) {
-            buscarEnderecoPorCEP();
-        } else {
-            limparCamposEndereco();
-            setMostrarCampos(false);
-            setErroCEP(false);
-        }
-    }, [cep]);
-
-    const buscarEnderecoPorCEP = async () => {
-        try {
-            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-            const data = response.data;
-
-            if (data.erro) {
-                limparCamposEndereco();
-                setMostrarCampos(false);
-                setErroCEP(true);
-            } else {
-                setEndereco(data.logradouro);
-                setBairro(data.bairro);
-                setCidade(data.localidade);
-                setEstado(data.uf);
-                setMostrarCampos(true);
-                setErroCEP(false);
-            }
-        } catch (error) {
-            limparCamposEndereco();
-            setMostrarCampos(false);
-            setErroCEP(true);
-        }
-    };
-
-    const limparCamposEndereco = () => {
-        setEndereco('');
-        setNumero('');
-        setBairro('');
-        setCidade('');
-        setEstado('');
-    };
 
     const handleImagemChange = (event) => {
         event.preventDefault();
@@ -436,7 +369,7 @@ export function UpdateHome() {
                         }
 
                         <div className={styles.add2}>
-                            <p>CEP {erroCEP && <span style={{ color: 'red' }}>(CEP inválido)</span>}</p>
+                            <p>CEP</p>
                             <input type="number" value={userData.homeData.cep} onChange={(e) =>
                                 setUserData({
                                     ...userData,

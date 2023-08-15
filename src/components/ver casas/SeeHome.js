@@ -46,7 +46,7 @@ export function SeeHome() {
             <div className={styles.see}>
 
                 {users.map((user) => (
-                    <div className={styles.see1} key={user.id} onClick={() => { navigate(`/updatehome/${user.id}`) }}>
+                    <div className={styles.see1} key={user.id} onClick={() => { navigate(`/generalhome/${user.id}`) }}>
 
                         <div className={styles.see2}>
                             <img src={user.homeData.imagemURL} alt="imagem da casa" />

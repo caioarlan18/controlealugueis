@@ -1,35 +1,72 @@
 .see {
   display: flex;
-  width: 90%;
+  width: 95%;
   flex-wrap: wrap;
   margin-bottom: 100px;
 }
 .see1 {
-  width: 45%;
+  width: 47%;
   margin-top: 30px;
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 20px 0px;
-  display: flex;
-  flex-direction: column;
+}
+.see2 {
+  width: 85%;
 }
 .see1 h1 {
   font-family: poppins;
   font-size: 15px;
-  text-align: center;
   color: black;
-  width: 85%;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 20px;
+  font-weight: 700;
 }
 .see1 p {
   font-size: 13px;
   font-family: poppins;
   margin-top: 10px;
   color: black;
+  font-weight: 600;
 }
 .see1 img {
-  width: 85%;
   height: 150px;
+  display: flex;
+  width: 100%;
+  object-fit: cover;
+}
+.see1 svg {
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+}
+a {
+  text-decoration: none;
+}
+.edit {
+  width: 85%;
+  background-color: lightgray;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.edit h1 {
+  font-family: poppins;
+  color: black;
+  font-size: 17px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 4000px) {
+  .see {
+    width: 98%;
+  }
+  .see1 {
+    width: 24%;
+  }
+  .see1 img {
+    height: 250px;
+  }
 }

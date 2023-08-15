@@ -24,9 +24,17 @@ export function AddHome() {
 
 
     const [homeName, setHomeName] = useState('')
+    const [isLeased, setIsLeased] = useState('não')
     const [homePrice, setHomePrice] = useState('')
     const [dayPayment, setDayPayment] = useState('')
     const [personName, setPersonName] = useState('')
+    const [personNumber, setPersonNumber] = useState('')
+    const [waterNumber, setWaterNumber] = useState('')
+    const [lightNumber, setLightNumber] = useState('')
+    const [startContractDate, setStartContractDate] = useState('')
+    const [contractTime, setContractTime] = useState('')
+    const [dayFees, setDayFees] = useState('')
+    const [totalFees, setTotalFees] = useState('')
     const [cep, setCep] = useState('')
     const [endereco, setEndereco] = useState('')
     const [numero, setNumero] = useState('')
@@ -37,43 +45,102 @@ export function AddHome() {
     const [erroCEP, setErroCEP] = useState(false);
     const [imagemURL, setImagemURL] = useState('');
     const [progress, setProgress] = useState(0);
+    const [selectedOption, setSelectedOption] = useState('sim');
+    const [status, setStatus] = useState('')
+
 
     const homeData = {
         imagemURL: imagemURL,
         homeName: homeName,
+        isLeased: isLeased,
         homePrice: homePrice,
         dayPayment: dayPayment,
+        paid: selectedOption,
         personName: personName,
+        personNumber: personNumber,
+        waterNumber: waterNumber,
+        lightNumber: lightNumber,
+        startContractDate: startContractDate,
+        contractTime: contractTime,
+        dayFees: dayFees,
+        totalFees: totalFees,
         cep: cep,
         endereco: endereco,
         numero: numero,
         bairro: bairro,
         cidade: cidade,
-        estado: estado
+        estado: estado,
     }
 
+
     async function salvar() {
-        if (imagemURL && homeName && homePrice && dayPayment && personName && cep && endereco && numero && bairro && cidade && estado !== '') {
-            const user = await addDoc(useCollectionRef, {
-                homeData
-            })
-            console.log(user)
-            alert('Sua casa foi criado com sucesso')
-            setImagemURL('')
-            setHomeName('')
-            setHomePrice('')
-            setDayPayment('')
-            setPersonName('')
-            setCep('')
-            setEndereco('')
-            setNumero('')
-            setBairro('')
-            setCidade('')
-            setEstado('')
+
+        if (isLeased === 'não') {
+            if (imagemURL && homeName && cep && endereco && numero && bairro && cidade && estado !== '') {
+
+                const user = await addDoc(useCollectionRef, {
+                    homeData
+                })
+                console.log(user)
+                alert('Sua casa foi criado com sucesso')
+                setImagemURL('')
+                setHomeName('')
+                setHomePrice('')
+                setDayPayment('')
+                setPersonName('')
+                setPersonNumber('')
+                setWaterNumber('')
+                setLightNumber('')
+                setStartContractDate('')
+                setContractTime('')
+                setDayFees('')
+                setTotalFees('')
+                setCep('')
+                setEndereco('')
+                setNumero('')
+                setBairro('')
+                setCidade('')
+                setEstado('')
+            } else {
+                alert('Existem campos vazios')
+            }
+
         } else {
-            alert('existem campos vazios')
+            if (imagemURL && homeName && homePrice && dayPayment && personName && personNumber && waterNumber && lightNumber && startContractDate && contractTime && dayFees && totalFees && cep && endereco && numero && bairro && cidade && estado !== '') {
+
+                const user = await addDoc(useCollectionRef, {
+                    homeData
+                })
+                console.log(user)
+                alert('Sua casa foi criado com sucesso')
+                setImagemURL('')
+                setHomeName('')
+                setHomePrice('')
+                setDayPayment('')
+                setPersonName('')
+                setPersonNumber('')
+                setWaterNumber('')
+                setLightNumber('')
+                setStartContractDate('')
+                setContractTime('')
+                setDayFees('')
+                setTotalFees('')
+                setCep('')
+                setEndereco('')
+                setNumero('')
+                setBairro('')
+                setCidade('')
+                setEstado('')
+            } else {
+                alert('existem campos vazios')
+            }
+
         }
+
+
     }
+
+
 
 
 
@@ -190,20 +257,69 @@ export function AddHome() {
                     <div className={styles.pc2}>
                         <div className={styles.add2}>
                             <p>Nome da casa</p>
-                            <input type="text" value={homeName} onChange={(e) => { setHomeName(e.target.value) }} />
+                            <input type="text" value={homeName} onChange={(e) => { setHomeName(e.target.value) }} placeholder='exemplo: casa3' />
                         </div>
                         <div className={styles.add2}>
-                            <p>Valor do Aluguel</p>
-                            <input type="number" value={homePrice} onChange={(e) => { setHomePrice(e.target.value) }} />
+                            <p>Está alugada?</p>
+                            <select value={isLeased} onChange={(e) => { setIsLeased(e.target.value) }} >
+                                <option value="não">Não</option>
+                                <option value="sim">Sim</option>
+                            </select>
                         </div>
-                        <div className={styles.add2}>
-                            <p>Dia do pagamento</p>
-                            <input type="number" value={dayPayment} onChange={(e) => { setDayPayment(e.target.value) }} />
-                        </div>
-                        <div className={styles.add2}>
-                            <p>Nome do inquilino</p>
-                            <input type="text" value={personName} onChange={(e) => { setPersonName(e.target.value) }} />
-                        </div>
+                        {isLeased === 'sim' &&
+                            <div>
+                                <div className={styles.add2}>
+                                    <p>Valor do Aluguel</p>
+                                    <input type="number" value={homePrice} onChange={(e) => { setHomePrice(e.target.value) }} />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Dia do pagamento do aluguel</p>
+                                    <input type="number" value={dayPayment} onChange={(e) => { setDayPayment(e.target.value) }} min={1}
+                                        max={30} placeholder='exemplo: 20' />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Já pagou?</p>
+                                    <select value={selectedOption} onChange={(e) => { setSelectedOption(e.target.value) }} >
+                                        <option value="sim">Sim</option>
+                                        <option value="não">Não</option>
+                                    </select>
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Nome do inquilino</p>
+                                    <input type="text" value={personName} onChange={(e) => { setPersonName(e.target.value) }} placeholder='exemplo: pedro silva' />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Número do inquilino</p>
+                                    <input type="text" value={personNumber} onChange={(e) => { setPersonNumber(e.target.value) }} placeholder='exemplo: 999999999' />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Número da matrícula da água</p>
+                                    <input type="text" value={waterNumber} onChange={(e) => { setWaterNumber(e.target.value) }} />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Número da matrícula da luz</p>
+                                    <input type="text" value={lightNumber} onChange={(e) => { setLightNumber(e.target.value) }} />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Data de início do contrato</p>
+                                    <input type="date" value={startContractDate} onChange={(e) => { setStartContractDate(e.target.value) }} />
+                                </div>
+
+                                <div className={styles.add2}>
+                                    <p>Tempo do contrato (em meses)</p>
+                                    <input type="number" value={contractTime} onChange={(e) => { setContractTime(e.target.value) }} placeholder='exemplo: 12' />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Juros por dia (em %)</p>
+                                    <input type="number" value={dayFees} onChange={(e) => { setDayFees(e.target.value) }} placeholder='exemplo: 2' />
+                                </div>
+                                <div className={styles.add2}>
+                                    <p>Juros sob o valor total (em %)</p>
+                                    <input type="number" value={totalFees} onChange={(e) => { setTotalFees(e.target.value) }} placeholder='exemplo: 10' />
+                                </div>
+                            </div>
+                        }
+
                         <div className={styles.add2}>
                             <p>CEP {erroCEP && <span style={{ color: 'red' }}>(CEP inválido)</span>}</p>
                             <input type="number" value={cep} onChange={(e) => { setCep(e.target.value) }} />

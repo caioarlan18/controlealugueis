@@ -39,6 +39,7 @@
   overflow: hidden;
   transition: 0.3s;
   position: absolute;
+  z-index: 1;
 }
 .open {
   height: 100vh;

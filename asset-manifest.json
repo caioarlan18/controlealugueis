@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/controlealugueis/static/css/main.f71d0067.css",
-    "main.js": "/controlealugueis/static/js/main.a6457ec9.js",
+    "main.js": "/controlealugueis/static/js/main.712f9559.js",
     "static/js/787.c7c1c93f.chunk.js": "/controlealugueis/static/js/787.c7c1c93f.chunk.js",
     "static/media/banner-principal.png": "/controlealugueis/static/media/banner-principal.42c357039582676048c4.png",
     "static/media/logotipo.png": "/controlealugueis/static/media/logotipo.b2e0e70bfb636c1bc8f5.png",
     "index.html": "/controlealugueis/index.html",
     "main.f71d0067.css.map": "/controlealugueis/static/css/main.f71d0067.css.map",
-    "main.a6457ec9.js.map": "/controlealugueis/static/js/main.a6457ec9.js.map",
+    "main.712f9559.js.map": "/controlealugueis/static/js/main.712f9559.js.map",
     "787.c7c1c93f.chunk.js.map": "/controlealugueis/static/js/787.c7c1c93f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f71d0067.css",
-    "static/js/main.a6457ec9.js"
+    "static/js/main.712f9559.js"
   ]
 }

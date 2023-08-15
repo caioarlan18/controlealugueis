@@ -6,6 +6,7 @@ import { initializeApp } from "firebase/app";
 import { collection, getFirestore, getDoc, addDoc, doc, deleteDoc, updateDoc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export function UpdateHome() {
     const [users, setUsers] = useState([])
     const [homeName, setHomeName] = useState('')
@@ -34,7 +35,7 @@ export function UpdateHome() {
 
     const { id } = useParams()
 
-
+    const navigate = useNavigate()
     const firebaseConfig = initializeApp({
         apiKey: "AIzaSyBS5rk76snX7XU2pICUd_3bMtFFAYskdU0",
         authDomain: "controle-de-alugueis-2bed8.firebaseapp.com",
@@ -141,87 +142,97 @@ export function UpdateHome() {
     };
 
     const handleImagemChange = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         const file = event.target.files[0];
-        const storageRef = ref(storage, `images/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
         uploadTask.on(
             "state_changed",
             snapshot => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                setProgress(progress)
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setProgress(progress);
             },
             error => {
-                alert(error)
+                alert(error);
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then(url => {
-                    setImagemURL(url)
-                })
+
+                    setUserData(prevUserData => ({
+                        ...prevUserData,
+                        homeData: {
+                            ...prevUserData.homeData,
+                            imagemURL: url, // Atualize também a imagemURL dentro do userData
+                        },
+                    }));
+                });
             }
-        )
+        );
     };
 
-    const handleRemoveImagem = () => {
+    const handleRemoveImagem = async () => {
+        if (userData.homeData.imagemURL) {
+            try {
+                const imageRef = ref(storage, userData.homeData.imagemURL);
 
-        // Extrai o nome do arquivo da URL
 
-
-        // Obtém a referência do arquivo no Firebase Storage
-        const imageRef = ref(storage, userData.homeData.imagemURL);
-
-        // Remove o arquivo do Firebase Storage
-        deleteObject(imageRef)
-            .then(() => {
+                await deleteObject(imageRef);
                 console.log('Arquivo removido com sucesso do Firebase Storage');
-                setImagemURL('');
-            })
-            .catch((error) => {
-                console.error('Erro ao remover o arquivo:', error);
-            });
 
+
+                setUserData(prevUserData => ({
+                    ...prevUserData,
+                    homeData: {
+                        ...prevUserData.homeData,
+                        imagemURL: '',
+                    },
+                }));
+            } catch (error) {
+                console.error('Erro ao remover o arquivo:', error);
+            }
+        }
     };
-    async function DeleteHome(id) {
+    async function DeleteHome() {
         const userDoc = doc(db, 'casas', id)
         await deleteDoc(userDoc)
+        alert('Casa removida com sucesso')
+        navigate('/seehome')
     }
     const userRef = doc(db, 'casas', id);
-    function editDoc() {
-        if (userData.homeData.isLeased === 'não') {
-            if (userData.homeData.imagemURL && userData.homeData.homeName && userData.homeData.cep && userData.homeData.endereco && userData.homeData.numero && userData.homeData.bairro && userData.homeData.cidade && userData.homeData.estado !== '') {
 
-                setDoc(userRef, userData.homeData)
-                    .then(() => {
-                        alert('Casa atualizada com sucesso')
-                    })
-                    .catch((error) => {
-                        console.error("Erro ao substituir o documento:", error);
-                        alert('erro ao atualizar a casa')
+    async function editDoc() {
+        try {
+            if (userData.homeData.isLeased === 'não') {
+                if (userData.homeData.imagemURL && userData.homeData.homeName && userData.homeData.cep && userData.homeData.endereco && userData.homeData.numero && userData.homeData.bairro && userData.homeData.cidade && userData.homeData.estado !== '') {
+                    await updateDoc(userRef, {
+                        homeData: userData.homeData
                     });
-
+                    alert('Sua casa foi atualizada com sucesso')
+                } else {
+                    alert('Existem campos vazios')
+                }
             } else {
-                alert('Existem campos vazios')
-            }
-
-        } else {
-            if (userData.homeData.imagemURL && userData.homeData.homeName && userData.homeData.homePrice && userData.homeData.dayPayment && userData.homeData.personName && userData.homeData.personNumber && userData.homeData.waterNumber && userData.homeData.lightNumber && userData.homeData.startContractDate && userData.homeData.contractTime && userData.homeData.dayFees && userData.homeData.totalFees && userData.homeData.cep && userData.homeData.endereco && userData.homeData.numero && userData.homeData.bairro && userData.homeData.cidade && userData.homeData.estado !== '') {
-
-                setDoc(userRef, userData.homeData)
-                    .then(() => {
-                        alert('Casa atualizada com sucesso')
-                    })
-                    .catch((error) => {
-                        console.error("Erro ao substituir o documento:", error);
-                        alert('erro ao atualizar a casa')
+                if (userData.homeData.imagemURL && userData.homeData.homeName && userData.homeData.homePrice && userData.homeData.dayPayment && userData.homeData.personName && userData.homeData.personNumber && userData.homeData.waterNumber && userData.homeData.lightNumber && userData.homeData.startContractDate && userData.homeData.contractTime && userData.homeData.dayFees && userData.homeData.totalFees && userData.homeData.cep && userData.homeData.endereco && userData.homeData.numero && userData.homeData.bairro && userData.homeData.cidade && userData.homeData.estado !== '') {
+                    await updateDoc(userRef, {
+                        homeData: userData.homeData
                     });
-                alert('Sua casa foi criado com sucesso')
-            } else {
-                alert('existem campos vazios')
+                    alert('Sua casa foi atualizada com sucesso')
+                } else {
+                    alert('Existem campos vazios')
+                }
             }
-
+        } catch (error) {
+            console.error("Erro ao atualizar o documento:", error);
+            alert('Erro ao atualizar a casa');
         }
-
     }
+
+
+
+
+
+
 
 
     return (
@@ -500,6 +511,9 @@ export function UpdateHome() {
                         </div>
                         <div className={styles.add2}>
                             <button onClick={editDoc}>Atualizar</button>
+                        </div>
+                        <div className={styles.remove}>
+                            <button onClick={DeleteHome}>Remover casa</button>
                         </div>
                     </div>
 

@@ -1,13 +1,24 @@
-.main img {
+.mainMobile img {
   width: 90%;
   display: flex;
   border-radius: 10px;
   margin-top: 30px;
   cursor: pointer;
 }
-
+.mainDesktop {
+  display: none;
+}
 @media screen and (min-width: 992px) and (max-width: 4000px) {
-  .main img {
-    width: 40%;
+  .mainDesktop {
+    display: block;
+  }
+  .mainDesktop img {
+    width: 90%;
+    display: flex;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+  .mainMobile {
+    display: none;
   }
 }

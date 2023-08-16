@@ -5,8 +5,6 @@ import { collection, getFirestore, getDocs, addDoc, doc, deleteDoc } from "fireb
 import { useEffect, useState } from 'react'
 import { FaCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { UpdateHome } from '../atualizar dados/UpdateHome';
-import { Navigate } from 'react-router-dom';
 export function SeeHome() {
     const navigate = useNavigate()
     const [users, setUsers] = useState([])

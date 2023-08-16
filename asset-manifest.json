@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/controlealugueis/static/css/main.cb874d39.css",
-    "main.js": "/controlealugueis/static/js/main.de5f3b37.js",
+    "main.css": "/controlealugueis/static/css/main.0abded4b.css",
+    "main.js": "/controlealugueis/static/js/main.a51f7f2a.js",
     "static/js/787.c7c1c93f.chunk.js": "/controlealugueis/static/js/787.c7c1c93f.chunk.js",
+    "static/media/banner principal desktop.png": "/controlealugueis/static/media/banner principal desktop.e736f71ccec0d3b04331.png",
     "static/media/banner-principal.png": "/controlealugueis/static/media/banner-principal.42c357039582676048c4.png",
     "static/media/logotipo.png": "/controlealugueis/static/media/logotipo.b2e0e70bfb636c1bc8f5.png",
     "index.html": "/controlealugueis/index.html",
-    "main.cb874d39.css.map": "/controlealugueis/static/css/main.cb874d39.css.map",
-    "main.de5f3b37.js.map": "/controlealugueis/static/js/main.de5f3b37.js.map",
+    "main.0abded4b.css.map": "/controlealugueis/static/css/main.0abded4b.css.map",
+    "main.a51f7f2a.js.map": "/controlealugueis/static/js/main.a51f7f2a.js.map",
     "787.c7c1c93f.chunk.js.map": "/controlealugueis/static/js/787.c7c1c93f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb874d39.css",
-    "static/js/main.de5f3b37.js"
+    "static/css/main.0abded4b.css",
+    "static/js/main.a51f7f2a.js"
   ]
 }

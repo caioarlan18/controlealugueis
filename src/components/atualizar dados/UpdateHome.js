@@ -5,6 +5,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { useParams, useNavigate } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
+
 export function UpdateHome() {
 
 
@@ -131,6 +133,7 @@ export function UpdateHome() {
         await deleteDoc(userDoc)
         alert('Casa removida com sucesso')
         navigate('/seehome')
+        scroll.scrollToTop({ duration: 0 })
     }
     const userRef = doc(db, 'casas', id);
 
@@ -142,6 +145,8 @@ export function UpdateHome() {
                         homeData: userData.homeData
                     });
                     alert('Sua casa foi atualizada com sucesso')
+                    navigate(`/generalhome/${id}`)
+                    scroll.scrollToTop({ duration: 0 })
                 } else {
                     alert('Existem campos vazios')
                 }
@@ -151,6 +156,8 @@ export function UpdateHome() {
                         homeData: userData.homeData
                     });
                     alert('Sua casa foi atualizada com sucesso')
+                    navigate(`/generalhome/${id}`)
+                    scroll.scrollToTop({ duration: 0 })
                 } else {
                     alert('Existem campos vazios')
                 }

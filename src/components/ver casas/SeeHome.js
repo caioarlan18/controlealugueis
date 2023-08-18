@@ -1,10 +1,12 @@
 import styles from './SeeHome.module.css'
 import { Header } from '../Header/Header'
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
 import { useEffect, useState } from 'react'
 import { FaCircle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
+
 export function SeeHome() {
     const navigate = useNavigate()
     const [users, setUsers] = useState([])
@@ -35,7 +37,31 @@ export function SeeHome() {
     const data = new Date()
     const dia = data.getDate()
     var status = ''
+    var total = 0
+    const prestacao = []
 
+    users.forEach((user) => {
+        if (user.homeData.isLeased === 'sim' && user.homeData.paid === 'não' && user.homeData.dayPayment > dia) {
+            total += Number(user.homeData.homePrice);
+            const prestacaoobj = {
+                name: user.homeData.homeName,
+                price: user.homeData.homePrice
+            }
+
+            prestacao.push(prestacaoobj)
+        }
+        if (user.homeData.isLeased === 'sim' && user.homeData.paid === 'não' && user.homeData.dayPayment < dia) {
+            total += Number(user.homeData.homePrice)
+            const prestacaoobj = {
+                name: user.homeData.homeName,
+                price: user.homeData.homePrice
+
+            }
+            prestacao.push(prestacaoobj)
+        }
+
+    });
+    console.log(prestacao)
     return (
         <div>
             <Header page={'Gerenciar casas'} />
@@ -44,7 +70,9 @@ export function SeeHome() {
             <div className={styles.see}>
 
                 {users.map((user) => (
-                    <div className={styles.see1} key={user.id} onClick={() => { navigate(`/generalhome/${user.id}`) }}>
+                    <div className={styles.see1} key={user.id} onClick={() => {
+                        navigate(`/generalhome/${user.id}`); scroll.scrollToTop({ duration: 0 });
+                    }}>
 
                         <div className={styles.see2}>
                             <img src={user.homeData.imagemURL} alt="imagem da casa" />
@@ -53,11 +81,28 @@ export function SeeHome() {
                                 <div>
                                     <p>Valor do aluguel: R$ {user.homeData.homePrice}</p>
                                     <p>Dia do pagamento: {user.homeData.dayPayment}</p>
-                                    {user.homeData.paid === 'não' && user.homeData.dayPayment > dia && (<p><FaCircle color="orange" /> {status = 'Pendente'}</p>)}
-                                    {user.homeData.paid === 'sim' && user.homeData.dayPayment < dia && (user.homeData.paid = 'não')}
-                                    {user.homeData.paid === 'sim' && user.homeData.dayPayment > dia && (<p><FaCircle color="green" /> {status = 'Pago'}</p>)}
-                                    {user.homeData.paid === 'não' && user.homeData.dayPayment < dia && (<p><FaCircle color="red" /> {status = 'Devendo'}</p>)}
-                                    {user.homeData.dayPayment == dia && (<p><FaCircle color="blue" /> {status = '...'}</p>)}
+                                    {user.homeData.paid === 'sim' ? (
+                                        user.homeData.dayPayment > dia ? (
+                                            <p>
+                                                <FaCircle color="green" /> {(status = 'Pago')}
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                <FaCircle color="orange" /> {(user.homeData.paid = 'não')}
+                                                {(status = 'Pendente')}
+                                            </p>
+                                        )
+                                    ) : user.homeData.paid === 'não' ? (
+                                        user.homeData.dayPayment > dia ? (
+                                            <p>
+                                                <FaCircle color="orange" /> {(status = 'Pendente')}
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                <FaCircle color="red" /> {(status = 'Devendo')}
+                                            </p>
+                                        )
+                                    ) : null}
 
                                 </div>
                                 : user.homeData.isLeased === 'não' && (<p><FaCircle color="purple" /> {status = 'Não está alugada'}</p>)
@@ -73,6 +118,12 @@ export function SeeHome() {
 
                 ))}
             </div>
+            {prestacao.map((pre, index) => (
+                <div className={styles.menuBottom} key={index}>
+                    <h1>Total a receber: {`R$${total}`} {pre.name}</h1>
+                </div>
+
+            ))}
 
         </div>
     )

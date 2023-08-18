@@ -1,10 +1,11 @@
 import { Header } from "../Header/Header"
 import styles from './GeneralHome.module.css'
-import { collection, getFirestore, getDoc, addDoc, doc, deleteDoc, updateDoc, setDoc } from "firebase/firestore";
+import { getFirestore, getDoc, doc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { FaCircle } from 'react-icons/fa';
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
 
 export function GeneralHome() {
     const firebaseConfig = initializeApp({
@@ -83,7 +84,7 @@ export function GeneralHome() {
                     <h1>Status: {userData.homeData.isLeased === 'sim' ?
                         <>
                             {userData.homeData.paid === 'não' && userData.homeData.dayPayment > dia && (<span><FaCircle color="orange" /> {status = 'Pendente'}</span>)}
-                            {userData.homeData.paid === 'sim' && userData.homeData.dayPayment < dia && (userData.homeData.paid = 'não')}
+                            {userData.homeData.paid === 'sim' && userData.homeData.dayPayment < dia && (<span><FaCircle color="brown" /> {status = 'Pagou atrasado'}</span>)}
                             {userData.homeData.paid === 'sim' && userData.homeData.dayPayment > dia && (<span><FaCircle color="green" /> {status = 'Pago'}</span>)}
                             {userData.homeData.paid === 'não' && userData.homeData.dayPayment < dia && (<span><FaCircle color="red" /> {status = 'Devendo'}</span>)}
                             {userData.homeData.dayPayment == dia && (<span><FaCircle color="blue" /> {status = '...'}</span>)}
@@ -129,7 +130,9 @@ export function GeneralHome() {
                     <h1>Estado: <span>{userData.homeData.estado}</span></h1>
                 </div>
                 <div className={styles.general1}>
-                    <button onClick={() => { navigate(`/updatehome/${id}`) }}>Editar Informações</button>
+                    <button onClick={() => {
+                        navigate(`/updatehome/${id}`); scroll.scrollToTop({ duration: 0 });
+                    }}>Editar Informações</button>
                 </div>
             </div>
         </div >

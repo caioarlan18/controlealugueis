@@ -9,7 +9,7 @@ export function Main() {
                 <Link to={'/seehome'}><img src={bannerPrincipalMobile} alt="banner principal do site" /></Link>
             </div>
             <div className={styles.mainDesktop}>
-                <Link to={'/seehome'}> <img src={bannerPrincipalDesktop} alt="" /> </Link>
+                <Link to={'/seehome'}> <img src={bannerPrincipalDesktop} alt="banner principal do site" /> </Link>
             </div>
 
         </div>

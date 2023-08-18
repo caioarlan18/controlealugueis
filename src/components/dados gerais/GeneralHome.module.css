@@ -27,6 +27,7 @@
 .general1 img {
   object-fit: cover;
   height: 200px;
+  width: 50%;
 }
 .general1 h1 {
   font-size: 13px;

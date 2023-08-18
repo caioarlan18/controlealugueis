@@ -58,7 +58,21 @@ a {
   color: black;
   font-size: 17px;
 }
-
+.menuBottom {
+  position: fixed;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  align-items: center;
+}
+.menuBottom h1 {
+  font-size: 17px;
+  color: black;
+  font-family: poppins;
+}
 @media screen and (min-width: 992px) and (max-width: 4000px) {
   .see {
     width: 98%;
@@ -68,5 +82,8 @@ a {
   }
   .see1 img {
     height: 250px;
+  }
+  .menuBottom {
+    display: none;
   }
 }

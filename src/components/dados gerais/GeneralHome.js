@@ -83,19 +83,19 @@ export function GeneralHome() {
                 <div className={styles.general1}>
                     <h1>Status: {userData.homeData.isLeased === 'sim' ?
                         <>
-                            {user.homeData.paid === 'sim' ? (
-                                user.homeData.dayPayment > dia ? (
+                            {userData.homeData.paid === 'sim' ? (
+                                userData.homeData.dayPayment > dia ? (
                                     <p>
                                         <FaCircle color="green" /> {(status = 'Pago')}
                                     </p>
                                 ) : (
                                     <p>
-                                        <FaCircle color="orange" /> {(user.homeData.paid = 'não')}
+                                        <FaCircle color="orange" /> {(userData.homeData.paid = 'não')}
                                         {(status = 'Pendente')}
                                     </p>
                                 )
-                            ) : user.homeData.paid === 'não' ? (
-                                user.homeData.dayPayment > dia ? (
+                            ) : userData.homeData.paid === 'não' ? (
+                                userData.homeData.dayPayment > dia ? (
                                     <p>
                                         <FaCircle color="orange" /> {(status = 'Pendente')}
                                     </p>

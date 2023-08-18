@@ -83,11 +83,28 @@ export function GeneralHome() {
                 <div className={styles.general1}>
                     <h1>Status: {userData.homeData.isLeased === 'sim' ?
                         <>
-                            {userData.homeData.paid === 'não' && userData.homeData.dayPayment > dia && (<span><FaCircle color="orange" /> {status = 'Pendente'}</span>)}
-                            {userData.homeData.paid === 'sim' && userData.homeData.dayPayment < dia && (<span><FaCircle color="brown" /> {status = 'Pagou atrasado'}</span>)}
-                            {userData.homeData.paid === 'sim' && userData.homeData.dayPayment > dia && (<span><FaCircle color="green" /> {status = 'Pago'}</span>)}
-                            {userData.homeData.paid === 'não' && userData.homeData.dayPayment < dia && (<span><FaCircle color="red" /> {status = 'Devendo'}</span>)}
-                            {userData.homeData.dayPayment == dia && (<span><FaCircle color="blue" /> {status = '...'}</span>)}
+                            {user.homeData.paid === 'sim' ? (
+                                user.homeData.dayPayment > dia ? (
+                                    <p>
+                                        <FaCircle color="green" /> {(status = 'Pago')}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        <FaCircle color="orange" /> {(user.homeData.paid = 'não')}
+                                        {(status = 'Pendente')}
+                                    </p>
+                                )
+                            ) : user.homeData.paid === 'não' ? (
+                                user.homeData.dayPayment > dia ? (
+                                    <p>
+                                        <FaCircle color="orange" /> {(status = 'Pendente')}
+                                    </p>
+                                ) : (
+                                    <p>
+                                        <FaCircle color="red" /> {(status = 'Devendo')}
+                                    </p>
+                                )
+                            ) : null}
 
                         </>
                         : userData.homeData.isLeased === 'não' && (<span> <FaCircle color="purple" />{status = 'Não está alugada'}</span>)

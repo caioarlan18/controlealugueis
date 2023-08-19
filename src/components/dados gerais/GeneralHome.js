@@ -64,7 +64,6 @@ export function GeneralHome() {
     }, [id]);
     const data = new Date()
     const dia = data.getDate()
-    var status = ''
     const navigate = useNavigate()
 
     const vencimento = new Date(userData.homeData.startContractDate)
@@ -83,31 +82,34 @@ export function GeneralHome() {
                 <div className={styles.general1}>
                     <h1>Status: {userData.homeData.isLeased === 'sim' ?
                         <>
-                            {userData.homeData.paid === 'sim' ? (
-                                userData.homeData.dayPayment > dia ? (
-                                    <p>
-                                        <FaCircle color="green" /> {(status = 'Pago')}
-                                    </p>
+                            {
+                                userData.homeData.paid === 'sim' ? (
+                                    userData.homeData.dayPayment > dia ? (
+                                        <span>
+                                            <FaCircle color="green" /> Pago
+                                        </span>
+                                    ) : (
+                                        <span>
+                                            <FaCircle color="orange" /> Pendente
+                                        </span>
+                                    )
                                 ) : (
-                                    <p>
-                                        <FaCircle color="orange" /> {(userData.homeData.paid = 'não')}
-                                        {(status = 'Pendente')}
-                                    </p>
+                                    userData.homeData.paid === 'não' ? (
+                                        userData.homeData.dayPayment >= dia ? (
+                                            <span>
+                                                <FaCircle color="orange" /> Pendente
+                                            </span>
+                                        ) : (
+                                            <span>
+                                                <FaCircle color="red" /> Devendo
+                                            </span>
+                                        )
+                                    ) : null
                                 )
-                            ) : userData.homeData.paid === 'não' ? (
-                                userData.homeData.dayPayment > dia ? (
-                                    <p>
-                                        <FaCircle color="orange" /> {(status = 'Pendente')}
-                                    </p>
-                                ) : (
-                                    <p>
-                                        <FaCircle color="red" /> {(status = 'Devendo')}
-                                    </p>
-                                )
-                            ) : null}
+                            }
 
                         </>
-                        : userData.homeData.isLeased === 'não' && (<span> <FaCircle color="purple" />{status = 'Não está alugada'}</span>)
+                        : userData.homeData.isLeased === 'não' && (<span> <FaCircle color="purple" /> Não está alugada</span>)
                     }
                     </h1>
                 </div>

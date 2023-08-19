@@ -36,7 +36,6 @@ export function SeeHome() {
 
     const data = new Date()
     const dia = data.getDate()
-    var status = ''
     var total = 0
     const prestacao = []
 
@@ -70,9 +69,7 @@ export function SeeHome() {
             <div className={styles.see}>
 
                 {users.map((user) => (
-                    <div className={styles.see1} key={user.id} onClick={() => {
-                        navigate(`/generalhome/${user.id}`); scroll.scrollToTop({ duration: 0 });
-                    }}>
+                    <div className={styles.see1} key={user.id} onClick={() => { navigate(`/generalhome/${user.id}`); scroll.scrollToTop({ duration: 0 }) }}>
 
                         <div className={styles.see2}>
                             <img src={user.homeData.imagemURL} alt="imagem da casa" />
@@ -81,31 +78,34 @@ export function SeeHome() {
                                 <div>
                                     <p>Valor do aluguel: R$ {user.homeData.homePrice}</p>
                                     <p>Dia do pagamento: {user.homeData.dayPayment}</p>
-                                    {user.homeData.paid === 'sim' ? (
-                                        user.homeData.dayPayment > dia ? (
-                                            <p>
-                                                <FaCircle color="green" /> {(status = 'Pago')}
-                                            </p>
+                                    {
+                                        user.homeData.paid === 'sim' ? (
+                                            user.homeData.dayPayment > dia ? (
+                                                <p>
+                                                    <FaCircle color="green" /> Pago
+                                                </p>
+                                            ) : (
+                                                <p>
+                                                    <FaCircle color="orange" /> Pendente
+                                                </p>
+                                            )
                                         ) : (
-                                            <p>
-                                                <FaCircle color="orange" /> {(user.homeData.paid = 'não')}
-                                                {(status = 'Pendente')}
-                                            </p>
+                                            user.homeData.paid === 'não' ? (
+                                                user.homeData.dayPayment >= dia ? (
+                                                    <p>
+                                                        <FaCircle color="orange" /> Pendente
+                                                    </p>
+                                                ) : (
+                                                    <p>
+                                                        <FaCircle color="red" /> Devendo
+                                                    </p>
+                                                )
+                                            ) : null
                                         )
-                                    ) : user.homeData.paid === 'não' ? (
-                                        user.homeData.dayPayment > dia ? (
-                                            <p>
-                                                <FaCircle color="orange" /> {(status = 'Pendente')}
-                                            </p>
-                                        ) : (
-                                            <p>
-                                                <FaCircle color="red" /> {(status = 'Devendo')}
-                                            </p>
-                                        )
-                                    ) : null}
+                                    }
 
                                 </div>
-                                : user.homeData.isLeased === 'não' && (<p><FaCircle color="purple" /> {status = 'Não está alugada'}</p>)
+                                : user.homeData.isLeased === 'não' && (<p><FaCircle color="purple" /> Não está alugada</p>)
                             }
 
 
@@ -120,7 +120,7 @@ export function SeeHome() {
             </div>
             {prestacao.map((pre, index) => (
                 <div className={styles.menuBottom} key={index}>
-                    <h1>Total a receber: {`R$${total}`} {pre.name}</h1>
+                    <h1>Total a receber: {`R$${total}`}</h1>
                 </div>
 
             ))}

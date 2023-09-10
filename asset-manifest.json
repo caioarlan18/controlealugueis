@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/controlealugueis/static/css/main.6d6dfaed.css",
-    "main.js": "/controlealugueis/static/js/main.3ddc12ae.js",
+    "main.js": "/controlealugueis/static/js/main.f32cedbe.js",
     "static/js/787.c7c1c93f.chunk.js": "/controlealugueis/static/js/787.c7c1c93f.chunk.js",
     "static/media/banner principal desktop.png": "/controlealugueis/static/media/banner principal desktop.e736f71ccec0d3b04331.png",
     "static/media/banner-principal.png": "/controlealugueis/static/media/banner-principal.42c357039582676048c4.png",
     "static/media/logotipo.png": "/controlealugueis/static/media/logotipo.b2e0e70bfb636c1bc8f5.png",
     "index.html": "/controlealugueis/index.html",
     "main.6d6dfaed.css.map": "/controlealugueis/static/css/main.6d6dfaed.css.map",
-    "main.3ddc12ae.js.map": "/controlealugueis/static/js/main.3ddc12ae.js.map",
+    "main.f32cedbe.js.map": "/controlealugueis/static/js/main.f32cedbe.js.map",
     "787.c7c1c93f.chunk.js.map": "/controlealugueis/static/js/787.c7c1c93f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6d6dfaed.css",
-    "static/js/main.3ddc12ae.js"
+    "static/js/main.f32cedbe.js"
   ]
 }
